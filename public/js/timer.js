@@ -6,11 +6,17 @@ window.addEventListener('DOMContentLoaded', () => {
     const studyBtn = document.getElementById('studyBtn');
     const breakBtn = document.getElementById('breakBtn');
 
-    const timers = { study: 25*60, break: 5*60 };
+    // Timer durations (seconds)
+    const timers = {
+        study: 25 * 60,
+        break: 5 * 60
+    };
+
     let currentTimer = 'study';
     let time = timers[currentTimer];
     let interval = null;
 
+    // Update the countdown display
     function updateCountdown() {
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
@@ -18,61 +24,83 @@ window.addEventListener('DOMContentLoaded', () => {
         countdownEl.innerHTML = `${minutes}:${seconds}`;
         time--;
 
+        // Timer ends
         if (time < 0) {
             clearInterval(interval);
             interval = null;
-            toggleActiveButton(); // update button style
-            switchTimer(currentTimer === 'study' ? 'break' : 'study');
-            startTimer(); // auto start next timer
+            toggleActiveButton();
+            // Switch automatically
+            currentTimer = currentTimer === 'study' ? 'break' : 'study';
+            time = timers[currentTimer];
+            updateCountdown();
+            startTimer();
         }
     }
 
+    // Highlight Start/Pause buttons
     function toggleActiveButton() {
         if (interval) {
-            // Timer running → highlight start button
             startBtn.classList.add('active');
             pauseBtn.classList.remove('active');
         } else {
-            // Timer paused → highlight pause button
             pauseBtn.classList.add('active');
             startBtn.classList.remove('active');
         }
     }
 
+    // Highlight active timer button (study/break)
+    function toggleActiveTimerButton() {
+        if (currentTimer === 'study') {
+            studyBtn.classList.add('timer-active');
+            breakBtn.classList.remove('timer-active');
+        } else {
+            breakBtn.classList.add('timer-active');
+            studyBtn.classList.remove('timer-active');
+        }
+    }
+
+    // Start timer
     function startTimer() {
         if (!interval) {
             interval = setInterval(updateCountdown, 1000);
             toggleActiveButton();
+            toggleActiveTimerButton();
         }
     }
 
+    // Pause timer
     function pauseTimer() {
         clearInterval(interval);
         interval = null;
         toggleActiveButton();
+        toggleActiveTimerButton();
     }
 
+    // Reset timer
     function resetTimer() {
         pauseTimer();
         time = timers[currentTimer];
         updateCountdown();
     }
 
+    // Switch timers manually
     function switchTimer(timerName) {
         pauseTimer();
         currentTimer = timerName;
         time = timers[currentTimer];
         updateCountdown();
+        toggleActiveTimerButton();
     }
 
-    // Button events
+    // Event listeners
     startBtn.addEventListener('click', startTimer);
     pauseBtn.addEventListener('click', pauseTimer);
     resetBtn.addEventListener('click', resetTimer);
     studyBtn.addEventListener('click', () => switchTimer('study'));
     breakBtn.addEventListener('click', () => switchTimer('break'));
 
-    // Initialize
+    // Initialize display
     updateCountdown();
     toggleActiveButton();
+    toggleActiveTimerButton();
 });
