@@ -30,6 +30,9 @@ app.get('/revAI', (req, res) => {
 app.get('/points', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/points.html'));
 });
+app.get('/timer', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/timer.html'));
+});
 
 app.post('/api/ask', async (req, res) => {
     try {
