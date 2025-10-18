@@ -5,8 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rev's Pomodoro Timer</title>
     <link rel="stylesheet" href="/css/timer.css">
+    <style>
+    /* --- Add navbar styling to match rest of site --- */
+    nav {
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #500000;
+      font-weight: 600;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    nav a:hover {
+      color: #800020;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9em;
+      color: #800020;
+      opacity: 0.8;
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/todo">To-Do List</a>
+        <a href="/revAI">Rev AI</a>
+        <a href="/points">Point Tracker</a>
+        <a href="/timer">Timer</a>
+    </nav>
+
     <div class="container">
         <h1>Rev's Pomodoro Timer ⏱️</h1>
 

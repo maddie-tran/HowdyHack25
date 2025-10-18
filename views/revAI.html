@@ -2,73 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reveille AI Helper 🐾</title>
+  <title>RevUp - Reveille AI 🐾</title>
   <link rel="stylesheet" href="/css/style.css">
   <style>
+    /* --- Consistent Aggie Aesthetic --- */
     body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f7f7f7;
-      padding: 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #f5e8e9 0%, #eddbd0 100%);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       color: #333;
     }
-    .chat-box {
+
+    nav {
       background: white;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #500000;
+      font-weight: 600;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    nav a:hover {
+      color: #800020;
+      transform: scale(1.05);
+    }
+
+    h1 {
+      color: #500000;
+      font-size: 2.4em;
+      text-align: center;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-wrapper {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(80, 0, 0, 0.15);
+      padding: 2rem;
+      max-width: 700px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 70vh;
+    }
+
+    .chat-box {
+      background-color: #fff;
       border-radius: 12px;
       padding: 1rem;
-      max-width: 600px;
-      height: 60vh;
+      flex-grow: 1;
       overflow-y: auto;
-      margin: 0 auto;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+      border: 2px solid #f0dcdc;
     }
+
     .user-msg, .ai-msg {
-      margin: 1rem 0;
-      padding: 0.75rem;
-      border-radius: 8px;
+      margin: 0.75rem 0;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
       line-height: 1.5;
+      word-wrap: break-word;
     }
+
     .user-msg {
       background-color: #f0f0f0;
       text-align: right;
     }
+
     .ai-msg {
-      background-color: #e6f0ff;
+      background-color: #f7e6eb;
+      border-left: 5px solid #800020;
       text-align: left;
     }
+
     .input-area {
       display: flex;
       justify-content: center;
-      margin-top: 1rem;
       gap: 0.5rem;
     }
+
     input {
-      width: 70%;
+      width: 75%;
       padding: 0.75rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      border-radius: 10px;
+      border: 1.5px solid #ccc;
+      font-size: 1em;
     }
+
     button {
-      background-color: maroon;
+      background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
       color: white;
       border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
     button:hover {
-      background-color: #800000;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9em;
+      color: #800020;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <h1 class="text-2xl font-bold text-center">🐾 Reveille AI Study Helper</h1>
 
-  <div id="aiResponse" class="chat-box"></div>
+  <!-- Navbar -->
+  <nav>
+    <a href="/">Home</a>
+    <a href="/todo">To-Do List</a>
+    <a href="/revAI">Rev AI</a>
+    <a href="/points">Point Tracker</a>
+    <a href="/timer">Timer</a>
+  </nav>
 
-  <div class="input-area">
-    <input id="userPrompt" placeholder="Ask Reveille for a study plan..." />
-    <button id="sendPrompt">Send</button>
+  <!-- Main Content -->
+  <div class="chat-wrapper">
+    <h1>🐾 Reveille AI Study Helper</h1>
+
+    <div id="aiResponse" class="chat-box"></div>
+
+    <div class="input-area">
+      <input id="userPrompt" placeholder="Ask Reveille for a study plan..." />
+      <button id="sendPrompt">Send</button>
+    </div>
   </div>
+
+  <footer>
+    <p>© 2025 RevUp | Powered by Groq AI 🧠🐶</p>
+  </footer>
 
   <script src="/js/revAI.js"></script>
 </body>
