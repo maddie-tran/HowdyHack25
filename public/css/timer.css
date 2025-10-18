@@ -1,4 +1,4 @@
-/* Fonts */
+/* General styling */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, #f5e8e9 0%, #eddbd0 100%);
@@ -23,7 +23,7 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Timer Box */
+/* Timer box */
 .timer-box {
     background: white;
     padding: 40px 30px;
@@ -31,7 +31,7 @@ h1 {
     box-shadow: 0 10px 30px rgba(80,0,0,0.15);
 }
 
-/* Countdown */
+/* Countdown display */
 #countdown {
     background-color: #500000;
     color: #fff;
@@ -71,7 +71,16 @@ button:hover {
     box-shadow: 0 5px 15px rgba(128,0,32,0.3);
 }
 
-/* Active state for Start/Pause */
+/* Active button style */
 button.active {
-    background-color: #770000;
+    background-color: #ff7f7f;        /* light red */
+    transform: scale(1.05);           /* slightly bigger */
+    box-shadow: 0 8px 25px rgba(255,127,127,0.7);  /* stronger shadow */
+}
+
+/* Active timer (study/break) */
+button.timer-active {
+    background-color: #ff7f7f;        /* light red */
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255,127,127,0.7);
 }
