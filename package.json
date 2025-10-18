@@ -3,17 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "description": "",
+  "description": "HowdyHack25 Repo",
   "dependencies": {
     "@ai-sdk/groq": "^2.0.24",
     "ai": "^5.0.76",
     "dotenv": "^17.2.3",
     "express": "^5.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maddie-tran/HowdyHack25.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maddie-tran/HowdyHack25/issues"
+  },
+  "homepage": "https://github.com/maddie-tran/HowdyHack25#readme"
 }

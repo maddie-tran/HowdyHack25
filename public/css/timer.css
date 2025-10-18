@@ -1,0 +1,77 @@
+/* Fonts */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #f5e8e9 0%, #eddbd0 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #500000;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Timer Box */
+.timer-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(80,0,0,0.15);
+}
+
+/* Countdown */
+#countdown {
+    background-color: #500000;
+    color: #fff;
+    font-size: 100px;
+    height: 180px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(80,0,0,0.3);
+}
+
+/* Buttons */
+.buttons, .switch-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(128,0,32,0.3);
+}
+
+/* Active state for Start/Pause */
+button.active {
+    background-color: #770000;
+}
