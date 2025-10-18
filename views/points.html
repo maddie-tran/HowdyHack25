@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RevUp - Points Tracker</title>
+<link rel="stylesheet" href="/css/points.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/todo">To-Do List</a>
+        <a href="/timer">Timer</a>
+    </nav>
+
+    <section class="points-section">
+        <h1>Your Points</h1>
+        <div class="points-summary">
+            <span>Total Points: </span><span id="totalPoints">0</span>
+        </div>
+
+        <h2>Points Log</h2>
+        <table id="pointsLog">
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Event</th>
+                    <th>Points Earned</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Log entries go here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="/js/points.js"></script>
+</body>
+</html>
