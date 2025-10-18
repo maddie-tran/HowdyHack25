@@ -1,18 +1,26 @@
 // server.js
 const express = require('express');
 const path = require('path');
-const dotenv = require('dotenv');
-const { groq } = require('@ai-sdk/groq');
+require('dotenv').config();
 const { generateText } = require('ai');
-
-dotenv.config();
+const Groq = require('groq-sdk');
 
 const app = express();
 const PORT = 3000;
 
+const SYSTEM_INSTRUCTION = `You are Reveille, the helpful dog and wonderful mascot of Texas A&M. 
+            Your main goal is to aid students in building tasks and goals, and to stay organized.
+             You are very playful, and like to woof and bark, and have lots of school spirit!
+             You give clear responses to asks such as goals, step-by-step plans, and encouragement. 
+             YOUR RESPONSE MUST BE IN A PARAGRAPH OR LESS, AND MUST BE FORMATTED IN MARKDOWN.
+             Gig'em Aggies!`;
+
+
 // Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });  
 
 // Routes
 app.get('/', (req, res) => {
@@ -24,7 +32,7 @@ app.get('/todo', (req, res) => {
 });
 
 app.get('/revAI', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/ai-helper.html'));
+  res.sendFile(path.join(__dirname, 'views/revAI.html'));
 });
 
 app.get('/points', (req, res) => {
@@ -35,21 +43,34 @@ app.get('/timer', (req, res) => {
 });
 
 app.post('/api/ask', async (req, res) => {
-    try {
-        const { prompt } = req.body;
-        const model = groq('llama-3.1-8b-instant');
+  try {
+    const { prompt } = req.body;
 
-        const result = await generateText({
-            model,
-            prompt,
-            providerOptions: { groq: { apiKey: process.env.GROQ_API_KEY}}
-        });
-
-        res.json({ response: result.text });
-    } catch (error) {
-        console.error('Error generating text:', error);
-        res.status(500).json({ error: 'Failed to generate text' });
+    if(!prompt || prompt.trim() === '') {
+      return res.status(400).json({ error: 'Missing prompt text'});
     }
+
+    const response = await groq.chat.completions.create({
+      model: 'groq/compound',
+      messages: [
+        {
+          role: 'system',
+          content: SYSTEM_INSTRUCTION
+        },
+        { role: 'user', content: prompt},
+      ],
+      temperature: 0.7,
+      max_tokens: 500,
     });
 
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+    const reply = response.choices[0].message.content;
+    res.json({ reply });
+
+  } catch (error) {
+    console.error('Error generating response:', error);
+    res.status(500).json({ error: 'Failed to generate response' });
+  }
+});
+
+
+app.listen(3000, () => console.log('🚀 Server running on http://localhost:3000'));

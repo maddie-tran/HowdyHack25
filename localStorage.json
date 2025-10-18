@@ -1,0 +1,12 @@
+{
+    "tasks":[
+        {"text": "Finish AI tab", "done": false},
+        { "text": "Feed Reveille", "done":true}
+    ],
+    "points": 120,
+    "reveille": {
+        "houseColor": "maroon",
+        "bedStyle": "classic",
+        "toys": ["bone", "football"]
+    }
+}

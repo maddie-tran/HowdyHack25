@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reveille AI Helper 🐾</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7f7f7;
+      padding: 2rem;
+      color: #333;
+    }
+    .chat-box {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      max-width: 600px;
+      height: 60vh;
+      overflow-y: auto;
+      margin: 0 auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .user-msg, .ai-msg {
+      margin: 1rem 0;
+      padding: 0.75rem;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+    .user-msg {
+      background-color: #f0f0f0;
+      text-align: right;
+    }
+    .ai-msg {
+      background-color: #e6f0ff;
+      text-align: left;
+    }
+    .input-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+    }
+    input {
+      width: 70%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: maroon;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #800000;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="text-2xl font-bold text-center">🐾 Reveille AI Study Helper</h1>
+
+  <div id="aiResponse" class="chat-box"></div>
+
+  <div class="input-area">
+    <input id="userPrompt" placeholder="Ask Reveille for a study plan..." />
+    <button id="sendPrompt">Send</button>
+  </div>
+
+  <script src="/js/revAI.js"></script>
+</body>
+</html>
