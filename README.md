@@ -1,4 +1,4 @@
-# 🤠 HowdyHack25 Entry
+# HowdyHack25 Entry 🤠
 ## Overview
 <p> Howdy! This is our repository for HowdyHack2025. Our team members are listed below:
 </p>
