@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
         break: 5 * 60
     };
 
+    let points = 0;
+
     let currentTimer = 'study';
     let time = timers[currentTimer];
     let interval = null;
@@ -34,7 +36,9 @@ window.addEventListener('DOMContentLoaded', () => {
             time = timers[currentTimer];
             updateCountdown();
             startTimer();
+            points += 30;
         }
+        module.exports = { points };
     }
 
     // Highlight Start/Pause buttons

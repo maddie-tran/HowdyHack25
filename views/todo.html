@@ -4,268 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rev's Reminders</title>
-    <style>
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            z-index: 1000;
-        }
-        nav a {
-            color:#500000;
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.2s, transform 0.2s;
-        }
-        nav a:hover {
-            color:#800020;
-            transform: translateY(-2px);
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #f5e8e9 0%, #eddbd0 100%);
-            min-height: 100vh;
-            padding: 120px 20px 20px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: #500000;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .add-task {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(80, 0, 0, 0.15);
-            margin-bottom: 30px;
-        }
-
-        .add-task h2 {
-            margin-bottom: 20px;
-            color: #500000;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            color: #800020;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-
-        input, select, textarea {
-            padding: 10px;
-            border: 2px solid #e6b8be;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #800020;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
-        }
-
-        .filters {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(80, 0, 0, 0.15);
-            margin-bottom: 30px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filters label {
-            margin: 0;
-        }
-
-        .filters select {
-            min-width: 150px;
-        }
-
-        .tasks-container {
-            display: grid;
-            gap: 20px;
-        }
-
-        .task-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(80, 0, 0, 0.1);
-            border-left: 5px solid #d4909d;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .task-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 25px rgba(80, 0, 0, 0.15);
-        }
-
-        .task-card.completed {
-            opacity: 0.6;
-        }
-
-        .task-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 10px;
-        }
-
-        .task-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: #500000;
-            flex: 1;
-        }
-
-        .task-card.completed .task-title {
-            text-decoration: line-through;
-        }
-
-        .task-meta {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        .badge {
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .priority-high {
-            background: #fdd;
-            color: #800020;
-            border-left-color: #800020 !important;
-        }
-
-        .priority-medium {
-            background: #f5e8e9;
-            color: #d4909d;
-            border-left-color: #d4909d !important;
-        }
-
-        .priority-low {
-            background: #eddbd0;
-            color: #a67c52;
-            border-left-color: #eddbd0 !important;
-        }
-
-        .task-description {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .task-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-small {
-            padding: 8px 15px;
-            font-size: 0.9em;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .btn-complete {
-            background: #d4909d;
-            color: white;
-        }
-
-        .btn-complete:hover {
-            background: #800020;
-        }
-
-        .btn-delete {
-            background: #500000;
-            color: white;
-        }
-
-        .btn-delete:hover {
-            background: #800020;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #500000;
-            font-size: 1.2em;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(80, 0, 0, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="/css/todo.css">
 </head>
 <body>
     <nav>
@@ -346,8 +85,24 @@
         let taskIdCounter = 1;
 
         function saveTasks() {
-            // In-memory storage only
+            localStorage.setItem('tasks', JSON.stringify(tasks));
         }
+
+        function loadTasks() {
+            const saved = localStorage.getItem('tasks');
+            if (saved) {
+                tasks = JSON.parse(saved);
+                if (tasks.length > 0) {
+                    taskIdCounter = Math.max(...tasks.map(t => t.id)) + 1;
+                }
+            }
+        }
+
+        window.addEventListener('load', () => {
+            loadTasks();
+            updateCourseFilter();
+            renderTasks();
+        });
 
         function addTask(title, course, priority, dueDate, description) {
             const task = {
@@ -365,12 +120,25 @@
             renderTasks();
         }
 
-        function toggleComplete(id) {
+        async function toggleComplete(id) {
             const task = tasks.find(t => t.id === id);
             if (task) {
                 task.completed = !task.completed;
                 saveTasks();
                 renderTasks();
+
+                // 🪙 Give points only when marking as complete (not when undoing)
+                if (task.completed) {
+                try {
+                    await fetch('/api/points/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: 30 })
+                    });
+                } catch (err) {
+                    console.error('Error adding points:', err);
+                }
+            }
             }
         }
 
@@ -497,7 +265,6 @@
         // Set default due date to today
         document.getElementById('dueDate').valueAsDate = new Date();
 
-        renderTasks();
     </script>
 </body>
 </html>

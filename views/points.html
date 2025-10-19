@@ -20,6 +20,8 @@
         <h1>Your Points</h1>
         <div class="points-summary">
             <span>Total Points: </span><span id="totalPoints">0</span>
+            <h2>🎯 Current Points: <span id="pointsDisplay">0</span></h2>
+
         </div>
 
         <h2>Points Log</h2>
@@ -38,5 +40,15 @@
     </section>
 
     <script src="/js/points.js"></script>
+    <script>
+        async function loadPoints() {
+            const res = await fetch('/api/points');
+            const data = await res.json();
+            document.getElementById('pointsDisplay').textContent = data.points;
+        }
+
+        window.addEventListener('load', loadPoints);
+    </script>
+
 </body>
 </html>

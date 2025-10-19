@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rev’s Focus Friend 🐾</title>
+  <title>Rev Friend 🐾</title>
   <link rel="stylesheet" href="/css/friend.css">
 </head>
 <body>
@@ -12,31 +11,29 @@
     <a href="/friend">Rev</a>
     <a href="/todo">To-Do List</a>
     <a href="/revAI">Rev AI</a>
-    <a href="/points">Point Tracker</a>
+    <a href="/points">Points</a>
     <a href="/timer">Timer</a>
   </nav>
 
-  <div class="container">
-    <h1>Rev's Home 🐶</h1>
+  <h1 style="margin-top: 120px;">Rev Friend 🐶</h1>
+  <h2>Your Points: <span id="pointsDisplay">0</span></h2>
+
+  <div class="friend-area">
     <div class="friend-box">
-      <img id="friendBase" src="/img/friend-base.png" alt="Your Friend">
-      <img id="friendAccessory" src="" alt="" style="display:none;">
+      <img id="friendImg" src="/images/rev_base.png" alt="Rev Friend">
     </div>
 
     <div class="shop">
-      <h2>🎁 Dress-Up Shop</h2>
-      <p>Points: <span id="pointsDisplay">0</span></p>
-
-      <div class="item" data-cost="10" data-img="/img/hat.png">
-        <img src="/img/hat.png" alt="Hat">
-        <p>Hat 🎩 — 10 pts</p>
-        <button class="buy-btn">Buy / Equip</button>
+      <h3>🎁 Shop</h3>
+      <div class="item" data-cost="20" data-item="hat">
+        <img src="/images/hat.png" alt="Cute Hat">
+        <p>Hat — 20 pts</p>
+        <button class="buy-btn">Buy</button>
       </div>
-
-      <div class="item" data-cost="20" data-img="/img/bow.png">
-        <img src="/img/bow.png" alt="Bow">
-        <p>Bow 🎀 — 20 pts</p>
-        <button class="buy-btn">Buy / Equip</button>
+      <div class="item" data-cost="30" data-item="bandana">
+        <img src="/images/bandana.png" alt="Bandana">
+        <p>Bandana — 30 pts</p>
+        <button class="buy-btn">Buy</button>
       </div>
     </div>
   </div>

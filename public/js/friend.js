@@ -3,64 +3,51 @@ let ownedItems = [];
 let equippedItem = null;
 
 async function loadPoints() {
-  const res = await fetch("/api/points");
+  const res = await fetch('/api/points');
   const data = await res.json();
-  points = data.points;
-  document.getElementById("pointsDisplay").textContent = points;
+  document.getElementById('pointsDisplay').textContent = data.points;
 }
 
-async function saveFriendState() {
-  await fetch("/api/friend", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ownedItems, equippedItem }),
+async function loadInventory() {
+  const res = await fetch('/api/inventory');
+  const data = await res.json();
+  data.inventory.forEach(item => applyItem(item));
+}
+
+async function buyItem(cost, item) {
+  const res = await fetch('/api/points/spend', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ amount: cost, item })
   });
-}
 
-async function loadFriendState() {
-  const res = await fetch("/api/friend");
-  if (res.ok) {
-    const data = await res.json();
-    ownedItems = data.ownedItems || [];
-    equippedItem = data.equippedItem || null;
-    if (equippedItem) {
-      document.getElementById("friendAccessory").src = equippedItem;
-      document.getElementById("friendAccessory").style.display = "block";
-    }
+  const data = await res.json();
+  if (data.success) {
+    document.getElementById('pointsDisplay').textContent = data.points;
+    applyItem(item);
+  } else {
+    alert(data.message || 'Not enough points!');
   }
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadPoints();
-  await loadFriendState();
+function applyItem(item) {
+  const friend = document.getElementById('friendImg');
+  const overlay = document.createElement('img');
+  overlay.src = `/images/${item}.png`;
+  overlay.classList.add('overlay-item');
+  friend.parentElement.appendChild(overlay);
+}
 
-  document.querySelectorAll(".buy-btn").forEach(button => {
-    button.addEventListener("click", async (e) => {
-      const itemDiv = e.target.closest(".item");
+document.addEventListener('DOMContentLoaded', () => {
+  loadPoints();
+  loadInventory();
+
+  document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const itemDiv = e.target.closest('.item');
       const cost = parseInt(itemDiv.dataset.cost);
-      const img = itemDiv.dataset.img;
-
-      if (!ownedItems.includes(img)) {
-        if (points >= cost) {
-          points -= cost;
-          ownedItems.push(img);
-          document.getElementById("pointsDisplay").textContent = points;
-          await fetch("/api/points", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ points }),
-          });
-        } else {
-          alert("Not enough points!");
-          return;
-        }
-      }
-
-      // Equip
-      equippedItem = img;
-      document.getElementById("friendAccessory").src = img;
-      document.getElementById("friendAccessory").style.display = "block";
-      saveFriendState();
+      const item = itemDiv.dataset.item;
+      buyItem(cost, item);
     });
   });
 });

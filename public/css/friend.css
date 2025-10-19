@@ -3,59 +3,71 @@ body {
   background: linear-gradient(135deg, #f5e8e9 0%, #eddbd0 100%);
   min-height: 100vh;
   margin: 0;
-  padding: 20px;
+  padding-top: 120px; /* space below navbar */
   display: flex;
-  flex-direction: column; /* stack nav + content vertically */
+  flex-direction: column;
   align-items: center;
 }
 nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            z-index: 1000;
-        }
-
-    nav a {
-      text-decoration: none;
-      color: #500000;
-      font-weight: 600;
-      transition: color 0.2s, transform 0.2s;
-    }
-
-    nav a:hover {
-      color: #800020;
-      transform: scale(1.05);
-    }
-title {
-  text-align: center;
-  margin-top: 120px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 1000;
 }
 
+nav a {
+  text-decoration: none;
+  color: #500000;
+  font-weight: 600;
+  transition: color 0.2s, transform 0.2s;
+}
+
+nav a:hover {
+  color: #800020;
+  transform: scale(1.05);
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* horizontally center the layout */
+  align-items: flex-start; /* align top edges */
+  gap: 80px; /* space between friend and shop */
+  margin-top: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Center the friend */
 .friend-box {
   position: relative;
-  display: inline-block;
-  margin-left: 600px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 .friend-box img {
-  width: 200px;
+  width: 220px;
+  max-width: 100%;
 }
 
+/* Keep shop aligned to the right */
 .shop {
   background: white;
   border-radius: 15px;
   display: inline-block;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
+  width: 300px;
+  text-align: center;
 }
 
 .item {
@@ -82,4 +94,24 @@ title {
 
 .buy-btn:hover {
   background: #800020;
+}
+
+.friend-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.friend-box img {
+  width: 200px;
+}
+
+.overlay-item {
+  position: absolute;
+  width: 200px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }

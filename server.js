@@ -8,6 +8,9 @@ const Groq = require('groq-sdk');
 const app = express();
 const PORT = 3000;
 
+let points = 0;
+let inventory = [];
+
 const SYSTEM_INSTRUCTION = `You are Reveille, the helpful dog and wonderful mascot of Texas A&M. 
             Your main goal is to aid students in building tasks and goals, and to stay organized.
              You are very playful, and like to woof and bark, and have lots of school spirit!
@@ -86,5 +89,29 @@ app.post('/api/ask', async (req, res) => {
   }
 });
 
+pp.get('/api/points', (req, res) => {
+  res.json({ points });
+});
+
+app.post('/api/points/add', (req, res) => {
+  const { amount } = req.body;
+  points += amount;
+  res.json({ success: true, points });
+});
+
+app.post('/api/points/spend', (req, res) => {
+  const { amount, item } = req.body;
+  if (points >= amount) {
+    points -= amount;
+    if (item) inventory.push(item);
+    res.json({ success: true, points, inventory });
+  } else {
+    res.status(400).json({ success: false, message: 'Not enough points' });
+  }
+});
+
+app.get('/api/inventory', (req, res) => {
+  res.json({ inventory });
+});
 
 app.listen(3000, () => console.log('🚀 Server running on http://localhost:3000'));
