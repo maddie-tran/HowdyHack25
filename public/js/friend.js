@@ -1,6 +1,6 @@
 let points = 0;
 let ownedItems = [];
-let equippedItem = null;
+let equippedItems = []; // Track multiple equipped items
 
 // Load points from API
 async function loadPoints() {
@@ -66,15 +66,12 @@ function applyItem(item) {
     const friendBox = document.querySelector('.friend-box');
     const friendImg = document.getElementById('friendImg');
 
-    // Remove previous overlays
-    document.querySelectorAll('.overlay-item').forEach(el => el.remove());
+    if (equippedItems.includes(item)) return; // prevent duplicate
 
-    // Create overlay
     const overlay = document.createElement('img');
     overlay.src = `/images/${item}.png`;
     overlay.classList.add('overlay-item', item);
 
-    // Ensure image is loaded before placing overlay
     if (!friendImg.complete) {
         friendImg.onload = () => applyItem(item);
         return;
@@ -82,24 +79,30 @@ function applyItem(item) {
 
     // Position overlays based on item
     if (item === 'plant') {
-        overlay.style.width = '90px';
-        overlay.style.bottom = '40px';
-        overlay.style.left = '40px';
+        overlay.style.width = '70px';
+        overlay.style.bottom = '190px';
+        overlay.style.left = '260px';
     } else if (item === 'desk') {
-        overlay.style.width = '300px';
-        overlay.style.bottom = '0px';
-        overlay.style.left = '20px';
+        overlay.style.width = '120px';
+        overlay.style.bottom = '120px';
+        overlay.style.left = '50px';
+    } else if (item === 'hat') {
+        overlay.style.width = '40px';
+        overlay.style.bottom = '210px';
+        overlay.style.left = '195px';
     }
 
     friendBox.appendChild(overlay);
-    equippedItem = item;
+    equippedItems.push(item);
     updateToggleButton(item);
 }
 
-// Unequip the item
+// Unequip a specific item
 function unequipItem(item) {
-    document.querySelectorAll('.overlay-item').forEach(el => el.remove());
-    equippedItem = null;
+    const overlay = document.querySelector(`.overlay-item.${item}`);
+    if (overlay) overlay.remove();
+
+    equippedItems = equippedItems.filter(i => i !== item);
     updateToggleButton(item);
 }
 
@@ -113,7 +116,7 @@ function createToggleButton(item) {
         btn = document.createElement('button');
         btn.classList.add('toggle-btn', 'unequip-btn');
         btn.addEventListener('click', () => {
-            if (equippedItem === item) {
+            if (equippedItems.includes(item)) {
                 unequipItem(item);
             } else {
                 applyItem(item);
@@ -138,7 +141,7 @@ function updateToggleButton(item) {
     if (ownedItems.includes(item)) {
         if (buyBtn) buyBtn.style.display = 'none';
         btn.style.display = 'inline-block';
-        btn.textContent = (equippedItem === item) ? 'Unequip' : 'Equip';
+        btn.textContent = (equippedItems.includes(item)) ? 'Unequip' : 'Equip';
     } else {
         if (buyBtn) buyBtn.style.display = 'inline-block';
         btn.style.display = 'none';

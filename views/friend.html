@@ -15,7 +15,7 @@
     <a href="/timer">Timer</a>
   </nav>
 
-  <!-- 🐶 Page Header -->
+  <!-- 🐶 Header -->
   <h1>Rev Friend 🐶</h1>
 
   <!-- 🎯 Points Section -->
@@ -28,16 +28,15 @@
 
   <!-- 🐾 Friend + Shop Area -->
   <div class="friend-area">
-    <!-- 🐕 Friend Box with Overlays -->
-    <div class="friend-box">
-      <img id="friendImg" src="/images/rev_base.png" alt="Rev Friend">
+    <!-- 🐕 Friend Box -->
+    <div class="friend-box" id="friendBox">
+      <img id="friendImg" src="/images/rev_base.png" alt="Rev Friend" class="friend-base">
     </div>
 
-    <!-- 🎁 Shop Box -->
+    <!-- 🎁 Shop -->
     <div class="shop">
       <h3>Shop</h3>
 
-      <!-- Shop Items -->
       <div class="item" data-cost="25" data-item="plant">
         <img src="/images/plant.png" alt="Cute Plant">
         <p>Plant — 25 pts</p>
@@ -49,10 +48,15 @@
         <p>Desk — 50 pts</p>
         <button class="buy-btn button">Buy</button>
       </div>
+
+      <div class="item" data-cost="10" data-item="hat">
+        <img src="/images/hat.png" alt="Hat">
+        <p>Hat — 10 pts</p>
+        <button class="buy-btn button">Buy</button>
+      </div>
     </div>
   </div>
 
-  <!-- 🖥 JavaScript -->
   <script src="/js/friend.js"></script>
 </body>
 </html>

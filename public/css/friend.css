@@ -3,7 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background: linear-gradient(135deg, #f5e8e9 0%, #eddbd0 100%);
   min-height: 100vh;
-  padding: 100px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -25,30 +25,22 @@ nav {
   z-index: 1000;
 }
 nav a {
-  color:#500000;
+  color: #500000;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s, transform 0.2s;
 }
 nav a:hover {
-  color:#800020;
+  color: #800020;
   transform: translateY(-2px);
-}
-
-/* 🐶 Header Wrapper */
-.header-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 80px; /* space below navbar */
-  width: 100%;
 }
 
 /* 🐶 Header */
 h1 {
   color: #500000;
   text-align: center;
-  margin: 0 0 15px 0;
+  margin-top: 80px;
+  margin-bottom: 15px;
   font-size: 2.5em;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
@@ -92,23 +84,38 @@ h2 {
   max-width: 1200px;
 }
 
-/* 🐕 Friend Image Box */
+/* 🐕 Friend Box */
 .friend-box {
-  position: relative; /* overlays will be positioned relative to this */
-  background: url('/images/study_room.png') center/cover no-repeat;
+  position: relative;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(80, 0, 0, 0.15);
-  padding: 30px;
+  width: 450px;
+  height: 400px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 400px;
-  height: 400px;
+  align-items: flex-end;
+  background:white;
+  overflow: hidden;
 }
 
-.friend-box img {
-  width: 220px;
-  max-width: 100%;
+/* Study room background behind Rev */
+.friend-box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('/images/study_room.png') center/cover no-repeat;
+  z-index: 0;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+/* 🐾 Rev Base */
+.friend-box .friend-base {
+  position: relative;
+  width: 20%; height: 25%;
+  bottom: 130px; /* move up */
+  z-index: 1;
 }
 
 /* 🎁 Shop Box */
@@ -149,8 +156,8 @@ h2 {
   margin: 8px 0;
 }
 
-/* 🛍️ Unified Button Style (Buy / Equip / Unequip) */
-.button {
+/* 🛍️ Buttons (Buy / Equip / Unequip) */
+.button, .toggle-btn {
   background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
   border: none;
   padding: 8px 16px;
@@ -161,49 +168,34 @@ h2 {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.button:hover {
+.button:hover, .toggle-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
 }
 
 /* 🎀 Overlay Items */
 .overlay-item {
-  position: absolute; /* relative to .friend-box */
+  position: absolute;
   pointer-events: none;
   transition: all 0.2s;
-  display: block;
+  z-index: 2;
 }
 
-/* 🌸 Responsive Design */
+/* 🌸 Responsive */
 @media (max-width: 768px) {
   .friend-area {
     flex-direction: column;
     align-items: center;
   }
-
   .shop {
     width: 90%;
   }
-
-  .friend-box img {
-    width: 180px;
+  .friend-box {
+    width: 350px;
+    height: 300px;
   }
-}
-
-/* Unequip button style */
-.unequip-btn {
-  background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
-  border: none;
-  padding: 8px 16px;
-  color: #500000;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-}
-
-.unequip-btn:hover {
-  background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(252, 127, 127, 0.3);
+  .friend-box .friend-base {
+    width: 130px;
+    bottom: 20px;
+  }
 }
