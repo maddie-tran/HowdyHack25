@@ -10,33 +10,31 @@ body {
   align-items: center;
 }
 
-/* 🧭 Navbar */
+
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  padding: 1rem 2rem;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  z-index: 1000;
-}
-
-nav a {
-  color: #500000;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.2s, transform 0.2s;
-}
-
-nav a:hover {
-  color: #800020;
-  transform: translateY(-2px);
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 8px 20px rgba(80, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            z-index: 1000;
+        }
+        nav a {
+            color:#500000;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s, transform 0.2s;
+        }
+        nav a:hover {
+            color:#800020;
+            transform: translateY(-2px);
+        }
 
 /* 🐶 Header Wrapper */
 .header-wrapper {
@@ -144,18 +142,14 @@ h2 {
   transition: transform 0.2s;
 }
 
-.item img:hover {
-  transform: scale(1.08);
-}
-
 .item p {
   color: #800020;
   font-weight: 600;
   margin: 8px 0;
 }
 
-/* 🛍️ Buttons */
-.buy-btn {
+/* 🛍️ Unified Button Style (Buy / Equip / Unequip) */
+.button {
   background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
   border: none;
   padding: 8px 16px;
@@ -163,22 +157,28 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.buy-btn:hover {
+.button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
 }
 
+
+
+
 /* 🎀 Overlay Items (like hats/bandanas) */
 .overlay-item {
   position: absolute;
-  width: 200px;
-  top: 0;
-  left: 0;
+  width: 10px;        /* shrink the overlay size */
+  height: auto;       /* maintain aspect ratio */
+  top: 10px;          /* distance from top of friend image */
+  left: 80px;         /* distance from left of friend image */
   pointer-events: none;
+  transition: all 0.2s; /* smooth movement if needed */
 }
+
 
 /* 🌸 Responsive Design */
 @media (max-width: 768px) {
@@ -194,4 +194,21 @@ h2 {
   .friend-box img {
     width: 180px;
   }
+} 
+/* Unequip button style */
+.unequip-btn {
+    background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
+    border: none;
+    padding: 8px 16px;
+    color: #500000;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.unequip-btn:hover {
+    background: linear-gradient(135deg, #d4909d 0%, #800020 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(252, 127, 127, 0.3);
 }
