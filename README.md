@@ -5,7 +5,7 @@
 
 - [Maddie Tran](https://www.linkedin.com/in/madeleinehtran) - Computer Engineering, minor in Mathematics, '28
 - [Kennedy Lyman](https://www.linkedin.com/in/kennedylyman) - Mechanical Engineering, minor in Project Management, '28
-- [Charvi Nallepalli](https://www.linkedin.com/charvi-nallepalli) - Biomedical Sciences, minor in Computer Science and Bioinformatics, '28
+- [Charvi Nallepalli](https://www.linkedin.com/in/charvi-nallepalli) - Biomedical Sciences, minor in Computer Science and Bioinformatics, '28
 - [Michelle Page](https://www.linkedin.com/in/michelle-l-page) - Applied Mathematics: Computational Science Emphasis, minor in Computer Science, '28
 
 ## Copying the Repo
