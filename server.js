@@ -41,6 +41,20 @@ app.get('/points', (req, res) => {
 app.get('/timer', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/timer.html'));
 });
+app.get('/friend', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/friend.html'));
+});
+
+let friendState = { ownedItems: [], equippedItem: null };
+
+app.get("/api/friend", (req, res) => {
+  res.json(friendState);
+});
+
+app.post("/api/friend", (req, res) => {
+  friendState = req.body;
+  res.json({ success: true });
+});
 
 app.post('/api/ask', async (req, res) => {
   try {
