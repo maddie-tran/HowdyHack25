@@ -6,30 +6,44 @@
   <link rel="stylesheet" href="/css/friend.css">
 </head>
 <body>
+  <!-- 🧭 Navbar -->
   <nav>
     <a href="/">Home</a>
     <a href="/friend">Rev</a>
     <a href="/todo">To-Do List</a>
     <a href="/revAI">Rev AI</a>
-    <a href="/points">Points</a>
     <a href="/timer">Timer</a>
   </nav>
 
-  <h1 style="margin-top: 120px;">Rev Friend 🐶</h1>
-  <h2>Your Points: <span id="pointsDisplay">0</span></h2>
+  <!-- 🐶 Page Header -->
+  <h1>Rev Friend 🐶</h1>
 
+  <!-- 🎯 Points Section -->
+  <section class="points-section">
+    <h2>🎯 Your Points</h2>
+    <div class="points-summary">
+      <span id="pointsDisplay">0</span> pts
+    </div>
+  </section>
+
+  <!-- 🐾 Friend + Shop Area -->
   <div class="friend-area">
+    <!-- 🐕 Friend Box -->
     <div class="friend-box">
       <img id="friendImg" src="/images/rev_base.png" alt="Rev Friend">
     </div>
 
+    <!-- 🎁 Shop Box -->
     <div class="shop">
-      <h3>🎁 Shop</h3>
+      <h3>Shop</h3>
+
+      <!-- Shop Items -->
       <div class="item" data-cost="20" data-item="hat">
         <img src="/images/hat.png" alt="Cute Hat">
         <p>Hat — 20 pts</p>
         <button class="buy-btn">Buy</button>
       </div>
+
       <div class="item" data-cost="30" data-item="bandana">
         <img src="/images/bandana.png" alt="Bandana">
         <p>Bandana — 30 pts</p>
@@ -38,6 +52,22 @@
     </div>
   </div>
 
+  <!-- 🖥 JavaScript -->
   <script src="/js/friend.js"></script>
+
+  <script>
+    // Load points from API
+    async function loadPoints() {
+      try {
+        const res = await fetch('/api/points');
+        const data = await res.json();
+        document.getElementById('pointsDisplay').textContent = data.points ?? 0;
+      } catch (err) {
+        console.error('Error loading points:', err);
+      }
+    }
+
+    window.addEventListener('load', loadPoints);
+  </script>
 </body>
 </html>

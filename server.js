@@ -89,7 +89,7 @@ app.post('/api/ask', async (req, res) => {
   }
 });
 
-pp.get('/api/points', (req, res) => {
+app.get('/api/points', (req, res) => {
   res.json({ points });
 });
 

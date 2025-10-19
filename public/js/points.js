@@ -19,14 +19,7 @@ function addPoints(eventName, points) {
 function updateDisplay() {
     document.getElementById('totalPoints').textContent = totalPoints;
 
-    const tbody = document.getElementById('pointsLog').querySelector('tbody');
-    tbody.innerHTML = pointsLog.map(entry => `
-        <tr>
-            <td>${entry.date}</td>
-            <td>${entry.event}</td>
-            <td>${entry.points}</td>
-        </tr>
-    `).join('');
+    
 }
 
 // Example: award points for timer completion
@@ -45,3 +38,4 @@ window.completeTask = completeTask;
 
 // Initialize display
 updateDisplay();
+
