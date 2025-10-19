@@ -24,11 +24,8 @@ async function loadInventory() {
 
             const itemDiv = document.querySelector(`.item[data-item="${item}"]`);
             if (itemDiv) {
-                // Hide buy button if already owned
                 const buyBtn = itemDiv.querySelector('.buy-btn');
                 if (buyBtn) buyBtn.style.display = 'none';
-
-                // Create the Equip/Unequip button
                 createToggleButton(item);
             }
         });
@@ -49,15 +46,12 @@ async function buyItem(cost, item) {
         const data = await res.json();
         if (data.success) {
             document.getElementById('pointsDisplay').textContent = data.points;
-
             if (!ownedItems.includes(item)) ownedItems.push(item);
 
-            // Hide the Buy button
             const itemDiv = document.querySelector(`.item[data-item="${item}"]`);
             const buyBtn = itemDiv.querySelector('.buy-btn');
             if (buyBtn) buyBtn.style.display = 'none';
 
-            // Show toggle button
             createToggleButton(item);
         } else {
             alert(data.message || 'Not enough points!');
@@ -69,16 +63,28 @@ async function buyItem(cost, item) {
 
 // Apply an overlay item
 function applyItem(item) {
-    const friend = document.getElementById('friendImg');
+    const friendBox = document.querySelector('.friend-box');
 
-    // Remove any previous overlays
+    // Remove previous overlays
     document.querySelectorAll('.overlay-item').forEach(el => el.remove());
 
+    // Create overlay
     const overlay = document.createElement('img');
     overlay.src = `/images/${item}.png`;
-    overlay.classList.add('overlay-item');
-    friend.parentElement.appendChild(overlay);
+    overlay.classList.add('overlay-item', item);
 
+    // Set size & position relative to friend-box
+    if (item === 'hat') {
+        overlay.style.width = '50px';
+        overlay.style.top = '40px';
+        overlay.style.left = '130px';
+    } else if (item === 'bandana') {
+        overlay.style.width = '80px';
+        overlay.style.top = '130px';
+        overlay.style.left = '110px';
+    }
+
+    friendBox.appendChild(overlay);
     equippedItem = item;
     updateToggleButton(item);
 }
@@ -98,7 +104,7 @@ function createToggleButton(item) {
     let btn = itemDiv.querySelector('.toggle-btn');
     if (!btn) {
         btn = document.createElement('button');
-        btn.classList.add('toggle-btn', 'unequip-btn'); // styled as unequip initially
+        btn.classList.add('toggle-btn', 'unequip-btn');
         btn.addEventListener('click', () => {
             if (equippedItem === item) {
                 unequipItem(item);
@@ -112,7 +118,7 @@ function createToggleButton(item) {
     updateToggleButton(item);
 }
 
-// Update toggle button text and style
+// Update toggle button
 function updateToggleButton(item) {
     const itemDiv = document.querySelector(`.item[data-item="${item}"]`);
     if (!itemDiv) return;
@@ -122,19 +128,17 @@ function updateToggleButton(item) {
 
     if (!btn) return;
 
-    // Hide buy button once owned
     if (ownedItems.includes(item)) {
         if (buyBtn) buyBtn.style.display = 'none';
         btn.style.display = 'inline-block';
         btn.textContent = (equippedItem === item) ? 'Unequip' : 'Equip';
     } else {
-        // Show buy button if not owned
         if (buyBtn) buyBtn.style.display = 'inline-block';
         btn.style.display = 'none';
     }
 }
 
-// Event listeners for buying items
+// Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     loadPoints();
     loadInventory();
