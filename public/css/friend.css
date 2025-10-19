@@ -95,13 +95,15 @@ h2 {
 /* 🐕 Friend Image Box */
 .friend-box {
   position: relative; /* overlays will be positioned relative to this */
-  background: white;
+  background: url('/images/study_room.png') center/cover no-repeat;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(80, 0, 0, 0.15);
   padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 400px;
+  height: 400px;
 }
 
 .friend-box img {
@@ -169,6 +171,7 @@ h2 {
   position: absolute; /* relative to .friend-box */
   pointer-events: none;
   transition: all 0.2s;
+  display: block;
 }
 
 /* 🌸 Responsive Design */

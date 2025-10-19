@@ -64,6 +64,7 @@ async function buyItem(cost, item) {
 // Apply an overlay item
 function applyItem(item) {
     const friendBox = document.querySelector('.friend-box');
+    const friendImg = document.getElementById('friendImg');
 
     // Remove previous overlays
     document.querySelectorAll('.overlay-item').forEach(el => el.remove());
@@ -73,15 +74,21 @@ function applyItem(item) {
     overlay.src = `/images/${item}.png`;
     overlay.classList.add('overlay-item', item);
 
-    // Set size & position relative to friend-box
-    if (item === 'hat') {
-        overlay.style.width = '50px';
-        overlay.style.top = '40px';
-        overlay.style.left = '130px';
-    } else if (item === 'bandana') {
-        overlay.style.width = '80px';
-        overlay.style.top = '130px';
-        overlay.style.left = '110px';
+    // Ensure image is loaded before placing overlay
+    if (!friendImg.complete) {
+        friendImg.onload = () => applyItem(item);
+        return;
+    }
+
+    // Position overlays based on item
+    if (item === 'plant') {
+        overlay.style.width = '90px';
+        overlay.style.bottom = '40px';
+        overlay.style.left = '40px';
+    } else if (item === 'desk') {
+        overlay.style.width = '300px';
+        overlay.style.bottom = '0px';
+        overlay.style.left = '20px';
     }
 
     friendBox.appendChild(overlay);

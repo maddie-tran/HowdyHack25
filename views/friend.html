@@ -31,9 +31,6 @@
     <!-- 🐕 Friend Box with Overlays -->
     <div class="friend-box">
       <img id="friendImg" src="/images/rev_base.png" alt="Rev Friend">
-
-      <!-- Overlay Items -->
-      
     </div>
 
     <!-- 🎁 Shop Box -->
@@ -41,15 +38,15 @@
       <h3>Shop</h3>
 
       <!-- Shop Items -->
-      <div class="item" data-cost="20" data-item="hat">
-        <img src="/images/hat.png" alt="Cute Hat">
-        <p>Hat — 20 pts</p>
+      <div class="item" data-cost="25" data-item="plant">
+        <img src="/images/plant.png" alt="Cute Plant">
+        <p>Plant — 25 pts</p>
         <button class="buy-btn button">Buy</button>
       </div>
 
-      <div class="item" data-cost="30" data-item="bandana">
-        <img src="/images/bandana.png" alt="Bandana">
-        <p>Bandana — 30 pts</p>
+      <div class="item" data-cost="50" data-item="desk">
+        <img src="/images/desk.png" alt="Desk">
+        <p>Desk — 50 pts</p>
         <button class="buy-btn button">Buy</button>
       </div>
     </div>
@@ -57,20 +54,5 @@
 
   <!-- 🖥 JavaScript -->
   <script src="/js/friend.js"></script>
-
-  <script>
-    // Load points from API
-    async function loadPoints() {
-      try {
-        const res = await fetch('/api/points');
-        const data = await res.json();
-        document.getElementById('pointsDisplay').textContent = data.points ?? 0;
-      } catch (err) {
-        console.error('Error loading points:', err);
-      }
-    }
-
-    window.addEventListener('load', loadPoints);
-  </script>
 </body>
 </html>
